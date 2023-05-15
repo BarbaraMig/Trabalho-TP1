@@ -1,10 +1,10 @@
 #include <stdio.h>
 
 //o programa deve ler função do funcionário(P-programador, A-analista, G-gerente), Anos de esperiência(int), Horas contratadas(int), Horas trabalhadas(int)
-int N, cont, RSpH, EXP, hrsC, hrsT,hrsE, salB, desINSS, desIR, salLq;
+int N=0, cont=0, RSpH, EXP, hrsC, hrsT,hrsE;
 char funcao;//não esquecer de jogar dentro das rotinas
-float hrsEpt;
-int lerFuncionario(){
+float hrsEpt,salB,desINSS,desIR, salLq;
+int lerFuncionario(char *funcao, int *EXP, int *hrsC, int *hrsT){
 // ler os dados do funcionario e devolver por 'parametros de saida' ao main
     printf("Insira a funcao do funcionario: ");
     scanf("%c", &funcao);
@@ -16,9 +16,10 @@ int lerFuncionario(){
     scanf("%d", &hrsT);
 }
 
-float calcularSalario(){
+float calcularSalario(char funcao, int EXP, int hrsC, int hrsT){
 //Entrada: a função do funcionario, o tempo de experiência, as horas contratadas, e a quantidade de horas realmente trabalhadas. Deve retornar o salario líquido, e conter os 'parametros de saida': salario bruto do mês, o número de horas excedentes, desconto do INSS e do IR
     //porcentagem de horas excedentes
+    int lerFuncionario(char *funcao, int *EXP, int *hrsC, int *hrsT);
     if(hrsE<=13){
         hrsEpt=1.23;
     }
@@ -28,7 +29,7 @@ float calcularSalario(){
     else{
         hrsEpt=1.56;
     }
-
+do{
     switch (funcao)
     {// experiencia e função
     case 'p':
@@ -69,15 +70,17 @@ float calcularSalario(){
             RSpH=130.0;
         }
         break;
+
     }    
+    }while(funcao!='g'||funcao!='G'||funcao!='a'||funcao!='A'||funcao!='p'||funcao!='P');
 
 if(hrsC>hrsT){
     salB= RSpH*hrsT*hrsEpt;
 }
 else{
-    salB=RSpH*hrsC*hrsEpt+(hrsT-hrsC)*hrsEpt;
+    salB=(RSpH*hrsC*hrsEpt)+(hrsE*hrsEpt);
 }
-desINSS=salB*0.11
+desINSS=salB*0.11;
 if(salB<=1500){
     desIR=0;
 }
@@ -95,9 +98,9 @@ else if(salB>4200){
 
 }
 
-void imprimirFolhaPagamento(){
+void imprimirFolhaPagamento(int *cont, float *salB, float *desINSS, float *desIR, float *salLq){
 //deve printar o salario bruto do mês, as horas excedentes, desconto do INSS e do IR e o salario liquido. Não deve retornar nada
-    printf("Folha de pagamento do funcionario %d \n Salario Bruto...(R$): %.2f \n Desconto INSS...(R$): %.2f \n Desconto IR....(R$): %.2f \n Salario liquido.(R$): %.2f ", cont, salB, desINSS, desIR, salLq);
+    printf("Folha de pagamento do funcionario %d \n Salario Bruto...(R$): %.2f \n Desconto INSS...(R$): %.2f \n Desconto IR....(R$): %.2f \n Salario liquido.(R$): %.2f ", cont+1, salB, desINSS, desIR, salLq);
 }
 //dentro dos parenteses da subrotina ficam os parametros de entrada
 
@@ -108,8 +111,11 @@ int main(){
         printf("numero de funcionarios deve ser maior que 0, insira novamente: ");
         scanf("%d", &N);
     }
+    //lerFuncionario
         for(cont;cont<N;cont++){
             //chamar as subrotinas e fazer o loop até cont=N
+            float calcularSalario(char funcao, int EXP, int hrsC, int hrsT);
+            void imprimirFolhaPagamento(int *cont, float *salB, float *desINSS, float *desIR, float *salLq);
         }
 
 
