@@ -6,7 +6,7 @@ char funcao;//não esquecer de jogar dentro das rotinas
 float hrsEpt,salB,desINSS,desIR, salLq;
 
 
-int lerFuncionario(){
+int lerFuncionario(char *funcao,int *EXP, int *hrsC, int *hrsT){
 // ler os dados do funcionario e devolver por 'parametros de saida' ao main
     char funcao;
     int EXP, hrsC, hrsT;
@@ -25,7 +25,7 @@ int lerFuncionario(){
 }
 
 
-float calcularSalario(char funcao, int EXP, int hrsC, int hrsT){
+float calcularSalario(float salB,float des INSS, float desIR, float salLq){
 int hrsE,RSpH, hrsEpt;
 //Entrada: a função do funcionario, o tempo de experiência, as horas contratadas, e a quantidade de horas realmente trabalhadas. Deve retornar o salario líquido, e conter os 'parametros de saida': salario bruto do mês, o número de horas excedentes, desconto do INSS e do IR
     //porcentagem de horas excedentes
