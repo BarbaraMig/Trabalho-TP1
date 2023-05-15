@@ -12,6 +12,10 @@ int lerFuncionario(){
     int EXP, hrsC, hrsT;
     printf("Insira a funcao do funcionario: ");
     scanf("%c", &funcao);
+    do{
+        printf("funcao invalida, insira novamente:");
+        scanf("%c",&funcao);
+}while(funcao!='g'||funcao!='G'||funcao!='a'||funcao!='A'||funcao!='p'||funcao!='P');    
     printf("Insira os anos de experiencia: ");
     scanf("%d", &EXP);
     printf("Insira as horas contratadas no mes: ");
@@ -22,10 +26,10 @@ int lerFuncionario(){
 
 
 float calcularSalario(char funcao, int EXP, int hrsC, int hrsT){
-int hrsE,RSpH, hrsEpt
+int hrsE,RSpH, hrsEpt;
 //Entrada: a função do funcionario, o tempo de experiência, as horas contratadas, e a quantidade de horas realmente trabalhadas. Deve retornar o salario líquido, e conter os 'parametros de saida': salario bruto do mês, o número de horas excedentes, desconto do INSS e do IR
     //porcentagem de horas excedentes
-    int lerFuncionario(char *funcao, int *EXP, int *hrsC, int *hrsT);
+    int lerFuncionario(&funcao, &EXP, &hrsC, &hrsT);
     if(hrsE<=13){
         hrsEpt=1.23;
     }
@@ -76,7 +80,6 @@ do{
             RSpH=130.0;
         }
         break;
-
     }    
     }while(funcao!='g'||funcao!='G'||funcao!='a'||funcao!='A'||funcao!='p'||funcao!='P');
 
@@ -119,7 +122,7 @@ int main(){
         printf("numero de funcionarios deve ser maior que 0, insira novamente: ");
         scanf("%d", &N);
     }
-    //lerFuncionario
+    int lerFuncionario()
         for(cont;cont<N;cont++){
             //chamar as subrotinas e fazer o loop até cont=N
             float calcularSalario(&funcao,&EXP, &hrsC, &hrsT);
