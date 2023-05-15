@@ -8,6 +8,8 @@ float hrsEpt,salB,desINSS,desIR, salLq;
 
 int lerFuncionario(){
 // ler os dados do funcionario e devolver por 'parametros de saida' ao main
+    char funcao;
+    int EXP, hrsC, hrsT;
     printf("Insira a funcao do funcionario: ");
     scanf("%c", &funcao);
     printf("Insira os anos de experiencia: ");
@@ -79,7 +81,7 @@ do{
     }while(funcao!='g'||funcao!='G'||funcao!='a'||funcao!='A'||funcao!='p'||funcao!='P');
 
 if(hrsC>hrsT){
-    salB= RSpH*hrsT*hrsEpt;
+    salB= RSpH*hrsT;
 }
 else{
     salB=(RSpH*hrsC*hrsEpt)+(hrsE*hrsEpt);
