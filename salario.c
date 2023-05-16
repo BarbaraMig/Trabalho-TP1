@@ -1,133 +1,129 @@
 #include <stdio.h>
 
-//o programa deve ler função do funcionário(P-programador, A-analista, G-gerente), Anos de esperiência(int), Horas contratadas(int), Horas trabalhadas(int)
-int N=0, cont=0, RSpH, EXP, hrsC, hrsT,hrsE;
-char funcao;//não esquecer de jogar dentro das rotinas
-float hrsEpt,salB,desINSS,desIR, salLq;
+void lerFuncionario(char *funcao, int *experiencia, int *hrsContratadas, int *hrsTrabalhadas){
 
-
-int lerFuncionario(char *funcao,int *EXP, int *hrsC, int *hrsT){
 // ler os dados do funcionario e devolver por 'parametros de saida' ao main
-    char funcao;
-    int EXP, hrsC, hrsT;
-    printf("Insira a funcao do funcionario: ");
-    scanf("%c", &funcao);
+    int invalido;
+    getchar();
     do{
-        printf("funcao invalida, insira novamente:");
-        scanf("%c",&funcao);
-}while(funcao!='g'||funcao!='G'||funcao!='a'||funcao!='A'||funcao!='p'||funcao!='P');    
-    printf("Insira os anos de experiencia: ");
-    scanf("%d", &EXP);
-    printf("Insira as horas contratadas no mes: ");
-    scanf("%d", &hrsC);
-    printf("Insira as horas trabalhadas no mes: ");
-    scanf("%d", &hrsT);
+    printf("Insira a funcao do funcionario: ");
+    scanf("%c", funcao);
+    
+    invalido = 0;
+    
+        switch(*funcao){
+            
+            case 'a':
+            case 'A':
+            case 'p':
+            case 'P':
+            case 'g':
+            case 'G':
+            break;
+            default:
+                invalido = 1;
+                break;
+        }
+        
+    }while(invalido);
+    
+    do{
+        
+        printf("\nInsira os anos de experiencia: ");
+        scanf("%d", experiencia);
+        
+    }while(*experiencia < 0);
+    
+    printf("\nInsira as horas contratadas no mes: ");
+    scanf("%d", hrsContratadas);
+    printf("\nInsira as horas trabalhadas no mes: ");
+    scanf("%d", hrsTrabalhadas);
 }
 
+float calcularSalario(char funcao, int experiencia,  int hrsContratadas, int hrsTrabalhadas, int *hrsExcedentes, float *salarioBruto, float *descontoINSS, float *descontoIR){
+//Entrada: a função do funcionario, o tempo de experiência, as horas contradas, e a quantidade de horas realmente trabalhadas. Deve retornar o salario líquido, e conter os 'parametros de saida': salario bruto do mês, o número de horas excedentes, desconto do INSS e do IR
 
-float calcularSalario(float salB,float des INSS, float desIR, float salLq){
-int hrsE,RSpH, hrsEpt;
-//Entrada: a função do funcionario, o tempo de experiência, as horas contratadas, e a quantidade de horas realmente trabalhadas. Deve retornar o salario líquido, e conter os 'parametros de saida': salario bruto do mês, o número de horas excedentes, desconto do INSS e do IR
-    //porcentagem de horas excedentes
-    int lerFuncionario(&funcao, &EXP, &hrsC, &hrsT);
-    if(hrsE<=13){
-        hrsEpt=1.23;
-    }
-    else if(hrsE>13 && hrsE<22){
-        hrsEpt=1.37;
-    }
-    else{
-        hrsEpt=1.56;
-    }
-do{
+    *hrsExcedentes = hrsTrabalhadas - hrsContratadas;
+    int valorHora;
     switch (funcao)
-    {// experiencia e função
+    {
+
     case 'p':
     case 'P':
-        if(EXP<=2 && EXP>0){
-            RSpH=25.0;
-        }
-        else if(EXP<=5 && EXP>3){
-            RSpH=30.0;
-        }
-        else if(EXP>5){
-            RSpH=38.0;
-        }
-       break;
-
+        if (experiencia <= 2) valorHora = 25;
+        else if (experiencia >= 3 &&  experiencia < 5) valorHora = 30;
+        else if (experiencia >= 5) valorHora = 38;
+        break;
+        
     case 'a':
     case 'A':
-        if(EXP<=2 && EXP>0){
-            RSpH=45.0;
-        }
-        else if(EXP<=5 && EXP>3){
-            RSpH=55.0;
-        }
-        else if(EXP>5){
-            RSpH=70.0;
-        }
+        if (experiencia <= 2) valorHora = 45;
+        else if (experiencia >= 3 && experiencia < 5) valorHora = 50;
+        else if (experiencia >= 5) valorHora = 70;
         break;
 
     case 'g':
     case 'G':
-        if(EXP<=2 && EXP>0){
-            RSpH=85.0;
-        }
-        else if(EXP<=5 && EXP>3){
-            RSpH=102.0;
-        }
-        else if(EXP>5){
-            RSpH=130.0;
-        }
+        if (experiencia <= 2) valorHora = 85;
+        else if (experiencia >= 3 && experiencia < 5) valorHora = 102;
+        else if (experiencia >= 5) valorHora = 130;
         break;
-    }    
-    }while(funcao!='g'||funcao!='G'||funcao!='a'||funcao!='A'||funcao!='p'||funcao!='P');
 
-if(hrsC>hrsT){
-    salB= RSpH*hrsT;
-}
-else{
-    salB=(RSpH*hrsC*hrsEpt)+(hrsE*hrsEpt);
-}
-desINSS=salB*0.11;
-if(salB<=1500){
-    desIR=0;
-}
-else if(salB>1500 && salB<=2700){
-    desIR=(salB*0.89)*0.15;
-}
-else if(salB>2700 && salB<=4200){
-    desIR=(salB*0.89)*0.20;
-}
-else if(salB>4200){
-    desIR=(salB*0.89)*0.30;
+    default:
+        break;
+        }
+
+    float aumento;
+    if (*hrsExcedentes > 0)   
+    {
+        if (*hrsExcedentes < 13) aumento = 1.23;
+        else if (*hrsExcedentes >= 13 && *hrsExcedentes < 22) aumento = 1.37;
+        else if (*hrsExcedentes >= 22) aumento = 1.56;
+        
+    }
+
+    float valorExcedenteHrsContratadas = *hrsExcedentes * aumento;
+
+//calcula desconto do INSS:
+*descontoINSS = *salarioBruto * 0.11;
+
+//calcula desconto do IR:
+if (*salarioBruto < 1500) *descontoIR = 0;
+
+else if (*salarioBruto < 2700 && *salarioBruto > 1500) *descontoIR = (*salarioBruto - *descontoINSS) * 0.15;
+
+else if (2700 < *salarioBruto < 4200) *descontoIR = (*salarioBruto - *descontoINSS) * 0.20;
+
+else if (*salarioBruto > 4200) *descontoIR = (*salarioBruto - *descontoINSS) * 0.30;
+
+
+*salarioBruto = hrsTrabalhadas * valorHora + valorExcedenteHrsContratadas;
+return (*salarioBruto - *descontoINSS - *descontoIR);
+
 }
 
-//100% do salario bruto menos 11% do INSS
-
-}
-
-
-void imprimirFolhaPagamento(int *cont, float *salB, float *desINSS, float *desIR, float *salLq){
+void imprimirFolhaPagamento(float salarioBruto, float descontoINSS, float descontoIR, float salarioLiquido){
 //deve printar o salario bruto do mês, as horas excedentes, desconto do INSS e do IR e o salario liquido. Não deve retornar nada
-    printf("Folha de pagamento do funcionario %d \n Salario Bruto...(R$): %.2f \n Desconto INSS...(R$): %.2f \n Desconto IR....(R$): %.2f \n Salario liquido.(R$): %.2f ", cont+1, salB, desINSS, desIR, salLq);
+    printf("Folha de pagamento do funcionario \n Salario Bruto...(R$): %.2f \n Desconto INSS...(R$): %.2f \n Desconto IR....(R$): %.2f \n Salario liquido.(R$): %.2f ", salarioBruto, descontoINSS, descontoIR, salarioLiquido);
 }
 //dentro dos parenteses da subrotina ficam os parametros de entrada
-
-
 int main(){
-    printf("numero de funcionarios: ");
+    float salarioBruto, descontoINSS, descontoIR, salarioLiquido;
+    int N, cont, experiencia, hrsContratadas, hrsTrabalhadas, hrsExcedentes, percentualHrsContratadasTrabalhadas;
+    char funcao;
+    do
+    {
+        printf("numero de funcionarios: ");
     scanf("%d", &N);
-    while(N<0){
-        printf("numero de funcionarios deve ser maior que 0, insira novamente: ");
-        scanf("%d", &N);
-    }
-    int lerFuncionario()
-        for(cont;cont<N;cont++){
-            //chamar as subrotinas e fazer o loop até cont=N
-            float calcularSalario(&funcao,&EXP, &hrsC, &hrsT);
-            void imprimirFolhaPagamento(&cont, &salB, &desINSS, &desIR, &salLq);
+    } while (N < 1);
+    
+        for(cont = 0; cont<N; cont++){
+            lerFuncionario(&funcao, &experiencia, &hrsContratadas, &hrsTrabalhadas);
+            salarioLiquido = calcularSalario(funcao, experiencia, hrsContratadas, hrsTrabalhadas, &hrsExcedentes, &salarioBruto, &descontoINSS, &descontoIR);
+            imprimirFolhaPagamento(salarioBruto, descontoINSS, descontoIR, salarioLiquido);
+            
         }
 
 
 }
+//implementar os ponteiros e depois ver o motivo da funcao lerfuncionario estar imprimindo mais de uma mensagem de uma vez só
