@@ -3,30 +3,19 @@
 void lerFuncionario(char *funcao, int *experiencia, int *hrsContratadas, int *hrsTrabalhadas, int cont){
 
 // ler os dados do funcionario e devolver por 'parametros de saida' ao main
-    int invalido;
 
-    do{
     printf("\nInsira a funcao do funcionario: ");
     scanf("%c", funcao);
-    
-    invalido = 0;
-    
-        switch(*funcao){
-            
-            case 'a':
-            case 'A':
-            case 'p':
-            case 'P':
-            case 'g':
-            case 'G':
-            break;
-            default:
-                invalido = 1;
-                break;
-        }
+// nada da certo 
+    while(*funcao != 'g' || *funcao != 'G' || *funcao != 'A' || *funcao != 'a' || *funcao != 'p' || *funcao != 'P' );
+    {
+
+        printf("\nInsira a funcao do funcionario: ");
+        scanf("%c", funcao);
+
+    }
+
         
-    }while(invalido == 1 );
-    
     do{
         
         printf("\nInsira os anos de experiencia: ");
@@ -115,7 +104,7 @@ void imprimirFolhaPagamento( float salarioBruto, float descontoINSS, float desco
         printf("\n Horas Excedentes.(h):    %d", *hrsExcedentes);
     }
 
-    printf("\n Desconto INSS...(R$): %.2f \n Desconto IR....(R$): %.2f \n Salario liquido.(R$): %.2f ", descontoINSS, descontoIR, salarioLiquido);
+    printf("\n Desconto INSS...(R$): %.2f \n Desconto IR.....(R$): %.2f \n Salario liquido.(R$): %.2f ", descontoINSS, descontoIR, salarioLiquido);
 }
 //dentro dos parenteses da subrotina ficam os parametros de entrada
 int main(){
