@@ -17,10 +17,10 @@ int main(){
     int pot = 1.0;
     int cont = 0;
     printf("insira o valor de x: ");
-    scanf("%f",&x);
+    scanf("%lf",&x);
     while( x>=1 || x<=-1 ){
         printf("insira novamente o valor de x: ");
-        scanf("%f", &x);
+        scanf("%lf", &x);
     }//primeira parte parece certa
 
         printf("insira o valor de n: ");
@@ -30,18 +30,17 @@ int main(){
         scanf("%d", &N);
     }
 
-
 int ip;
 
-while(i<N){
+while(cont<N){
 
-//o loop da potência
+//o loop das "rodadas"
 for(cont; cont<N; cont++){
 int k = (2 * cont) + 1;
+//loop da potencia
     for(ip = 0; ip<k; ip++){
-        pot = x * x;
+        x = x * x ;
     }
-    x = x + (x * pot);
 }
 }
 
