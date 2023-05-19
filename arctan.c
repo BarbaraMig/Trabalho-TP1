@@ -12,39 +12,44 @@
 //d) Não poderão ser usados vetores nem qualquer outro tipo de estrutura de dados, somente variáveis simples.
 //e) Todo o código deverá estar implementado na função main, sem o uso de funções auxiliares, com a exceção das funções scanf, printf e fflush.
 int main(){
-    double x;
+    float x;
     int N = -1;
-    int pot = 1.0;
-    int cont = 0;
-    printf("insira o valor de x: ");
-    scanf("%lf",&x);
-    while( x>=1 || x<=-1 ){
-        printf("insira novamente o valor de x: ");
-        scanf("%lf", &x);
-    }//primeira parte parece certa
-
+    int cont = 1;
         printf("insira o valor de n: ");
         scanf("%d",&N);
     while( N<0 ){
         printf("insira novamente o valor de N: ");
         scanf("%d", &N);
+    }    
+    printf("insira o valor de x: ");
+    scanf("%f",&x);
+    while( x>=1 || x<=-1 ){
+        printf("insira novamente o valor de x: ");
+        scanf("%f", &x);
+        
     }
 
-int ip;
-
-while(cont<N){
+float ipot = x;
+float arctan;
 
 //o loop das "rodadas"
 for(cont; cont<N; cont++){
-int k = (2 * cont) + 1;
+    int k = (2 * cont) + 1;
+//Coloca o k para ser 2i+1 e usa ele no for da potência
 //loop da potencia
-    for(ip = 0; ip<k; ip++){
-        x = x * x ;
+    for(k = 1;k<N;k++){
+//+_(1/k) * x^k        
+        x = x * ipot;
+   
+    }
+    if(cont % 2 == 0){
+        arctan = arctan + (1/k) * x;
+    }
+    else{
+        arctan = arctan + ((-1)/k) * x;
     }
 }
-}
-
-printf("%lf", x);
+printf("%.12f", arctan);
 
     return 0;
 }
