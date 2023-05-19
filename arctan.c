@@ -13,7 +13,7 @@
 //e) Todo o código deverá estar implementado na função main, sem o uso de funções auxiliares, com a exceção das funções scanf, printf e fflush.
 int main(){
     float x;
-    int N = -1;
+    int N;
     int cont = 1;
         printf("insira o valor de n: ");
         scanf("%d",&N);
@@ -29,17 +29,17 @@ int main(){
         
     }
 
-float ipot = x;
+float ipot;
 float arctan;
-
+float y = x;
 //o loop das "rodadas"
 for(cont; cont<N; cont++){
     int k = (2 * cont) + 1;
 //Coloca o k para ser 2i+1 e usa ele no for da potência
 //loop da potencia
-    for(k = 1;k<N;k++){
+    for(ipot; ipot<k; ipot++){
 //+_(1/k) * x^k        
-        x = x * ipot;
+        x = x * y;
    
     }
     if(cont % 2 == 0){
