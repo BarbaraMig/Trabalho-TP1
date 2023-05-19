@@ -14,7 +14,7 @@
 int main(){
     float x;
     int N;
-    int cont = 1;
+    int cont = 0;
         printf("insira o valor de n: ");
         scanf("%d",&N);
     while( N<0 ){
@@ -37,16 +37,16 @@ for(cont; cont<N; cont++){
     int k = (2 * cont) + 1;
 //Coloca o k para ser 2i+1 e usa ele no for da potência
 //loop da potencia
-    for(ipot; ipot<k; ipot++){
+    for(ipot = 0; ipot<k; ipot++){
 //+_(1/k) * x^k        
         x = x * y;
    
     }
     if(cont % 2 == 0){
-        arctan = arctan + (1/k) * x;
+        arctan = arctan + (1/(2 * cont + 1)) * x;
     }
     else{
-        arctan = arctan + ((-1)/k) * x;
+        arctan = arctan + ((-1)/(2 * cont + 1)) * x;
     }
 }
 printf("%.12f", arctan);
