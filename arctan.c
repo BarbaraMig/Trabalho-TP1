@@ -47,15 +47,16 @@ while(cont<N){
         x = x * y;
     }
     if(cont % 2 == 0){
-        arctan = arctan + (1/(2 * cont + 1)) * x;
+        arctan = arctan + (1 * x)/k;
     }
     else{
-        arctan = arctan + ((-1)/(2 * cont + 1)) * x;
+        arctan = arctan - (1 * x)/k;
     }
     cont++;
 }
     
-
+//o problema tava em algum lugar na soma, provavelmente no (2*cont+1)
+//agora alguns resultados vão mas outros tem umas diferenças e quanto mais próximo do limite maior a diferença
 
 printf("%f", arctan);
 
