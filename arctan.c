@@ -31,34 +31,45 @@ int main(){
         
     }
 
-float ipot;
-float arctan;
+int ipot;
+double arctan;
 float y = x;
 //o loop das "rodadas"
 
 while(cont<N){
-    int k = (2 * cont) + 1;
+    float k = (2 * cont) + 1;
 //Coloca o k para ser 2i+1 e usa ele no for da potência
 //loop da potencia
         x = y;
     for(ipot = 1; ipot<k; ipot++){
         
         //+_(1/k) * x^k        
-        x = x * y;
+        x =  x * y;
     }
     if(cont % 2 == 0){
-        arctan = arctan + (1 * x)/k;
+        arctan = arctan + (1.0/(float)(2 * cont + 1)) * x;
     }
     else{
-        arctan = arctan - (1 * x)/k;
+        arctan = arctan - (1.0/(float)(2 * cont + 1)) * x;
     }
     cont++;
 }
     
 //o problema tava em algum lugar na soma, provavelmente no (2*cont+1)
 //agora alguns resultados vão mas outros tem umas diferenças e quanto mais próximo do limite maior a diferença
+//(X__certo__resultado do programa
+//(0.1__0.9966__0.099669)
+//(0.2__0.19739__0.197396)
+//(0.3__0.29145__0.291457)
+//(0.4__0.38050__0.380510)
+//(0.5__0.46363__0.463684)
+//(0.6__0.54034__0.540673)
+//(0.7__0.61020__0.612000)
+//(0.8__0.67201__0.679823)
+//(0.9__072128__0.749817)
+//(0.99__0.74372__0.825115)
 
-printf("%f", arctan);
+printf("%lf", arctan);
 
     return 0;
 }
