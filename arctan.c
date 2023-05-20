@@ -36,7 +36,7 @@ double arctan;
 float y = x;
 //o loop das "rodadas"
 
-while(cont<N){
+while(cont<=N){
     float k = (2 * cont) + 1;
 //Coloca o k para ser 2i+1 e usa ele no for da potência
 //loop da potencia
