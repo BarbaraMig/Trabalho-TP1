@@ -1,4 +1,4 @@
-#include <stdio.h>
+
 
 //Crie um programa em C que lê primeiramente um valor x (|x| < 1), e em seguida um
 //valor n (n ≥ 0) onde n é o número de termos da série e imprime o valor do arco-tangente,
@@ -11,20 +11,22 @@
 //C/C++ nem em nenhuma outra biblioteca.
 //d) Não poderão ser usados vetores nem qualquer outro tipo de estrutura de dados, somente variáveis simples.
 //e) Todo o código deverá estar implementado na função main, sem o uso de funções auxiliares, com a exceção das funções scanf, printf e fflush.
+#include <stdio.h>
 int main(){
+
     float x;
     int N;
     int cont = 0;
         printf("insira o valor de n: ");
         scanf("%d",&N);
     while( N<0 ){
-        printf("insira novamente o valor de N: ");
+        printf("numero invalido. insira novamente o valor de N: ");
         scanf("%d", &N);
     }    
     printf("insira o valor de x: ");
     scanf("%f",&x);
     while( x>=1 || x<=-1 ){
-        printf("insira novamente o valor de x: ");
+        printf("numero invalido. insira novamente o valor de x: ");
         scanf("%f", &x);
         
     }
@@ -33,14 +35,16 @@ float ipot;
 float arctan;
 float y = x;
 //o loop das "rodadas"
-for(cont; cont<N; cont++){
+
+while(cont<N){
     int k = (2 * cont) + 1;
 //Coloca o k para ser 2i+1 e usa ele no for da potência
 //loop da potencia
-    for(ipot = 0; ipot<k; ipot++){
-//+_(1/k) * x^k        
+        x = y;
+    for(ipot = 1; ipot<k; ipot++){
+        
+        //+_(1/k) * x^k        
         x = x * y;
-   
     }
     if(cont % 2 == 0){
         arctan = arctan + (1/(2 * cont + 1)) * x;
@@ -48,8 +52,12 @@ for(cont; cont<N; cont++){
     else{
         arctan = arctan + ((-1)/(2 * cont + 1)) * x;
     }
+    cont++;
 }
-printf("%.12f", arctan);
+    
+
+
+printf("%f", arctan);
 
     return 0;
 }
