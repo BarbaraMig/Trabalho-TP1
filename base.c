@@ -116,22 +116,29 @@ int main(){
             printf("\n");
         }
     } while(*palavra != '.');
-     
+    
     int ganhador = 0, empate = 0;
-    int ganhador2;
+
     for(int i = 0; i < NumJ; i++)
         if (jog[ganhador].ponto < jog[i].ponto){
             ganhador = i;
         }
         else if (jog[ganhador].ponto == jog[i].ponto){
-            
-            empate +=1;
-            ganhador2 = i;
+            ganhador = i;
+            empate  += 1;
         }
         
             
-    if(empate > 0)
-        printf("Vencedores: %s e %s", jog[ganhador].nome, jog[ganhador2].nome);
+    if(empate > 0){
+        printf("Vencedores:\n");
+        for(int cont = 0; cont < empate; cont++){
+            if(jog[cont].ponto == jog[ganhador].ponto){
+                printf("%s \n", jog[cont].nome);
+            }
+
+        }
+    }
+       
     else
         printf("\n\nVencedor(es): %s", jog[ganhador].nome);
 /*o programa roda além do ponto de finalização, não aparece se a palavra foi encontrada ou não e não aparece one foi encontrada*/
