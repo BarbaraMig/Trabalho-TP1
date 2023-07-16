@@ -143,6 +143,8 @@ int main() {
     }
 
     preencherMatriz(matriz);
+    
+    int fim = 1;
 
     do {
         for (int i = 0; i < NumJ; i++) {
@@ -153,7 +155,6 @@ int main() {
                 printf("\n");
             }
             
-            
             do{
                 printf("\n%s, qual é a sua palavra: ", jog[i].nome);
                 scanf("%s", palavra);
@@ -162,16 +163,18 @@ int main() {
                 if (strlen(palavra)<2)
                     printf("Min. de letras: 2\n\n");
             }while (strlen(palavra)<2);
-
-            if (strcmp(palavra, ".") == 0)
+            
+            if (i == 0 && strcmp(palavra, ".") == 0){
+                fim = 0;
                 break;
+            }
 
             int ocorrencias = encontrarPalavra(matriz, palavra);
             jog[i].ponto += ocorrencias;
 
             printf("\nA palavra '%s' foi encontrada %d vez(es) na matriz.\n", palavra, ocorrencias);
         }
-    } while (strcmp(palavra, ".") != 0);
+    } while (fim != 0);
 
     int max_pontos = jog[0].ponto;
     int empate = 0;
