@@ -172,9 +172,10 @@ int main() {
             }
 
             int ocorrencias = encontrarPalavra(matriz, palavra);
-            if (jog[i].ponto > 0)
+            if (ocorrencias > 0)
                 jog[i].ponto += ocorrencias;
-            if (ocorrencias == -1) ocorrencias = 0;
+            else 
+                ocorrencias = 0;
 
             printf("\nA palavra '%s' foi encontrada %d vez(es) na matriz.\n", palavra, ocorrencias);
         }
