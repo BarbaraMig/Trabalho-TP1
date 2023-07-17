@@ -85,7 +85,9 @@ int encontrarPalavra(char matriz[10][10], char palavra[10]) {
         }
     }
 
-    return ocorrencias;
+    if (ocorrencias > 0)
+        return 1;
+    return -1;
 }
 
 void preencherMatriz(char matriz[10][10]) {
@@ -170,7 +172,8 @@ int main() {
             }
 
             int ocorrencias = encontrarPalavra(matriz, palavra);
-            jog[i].ponto += ocorrencias;
+            if (jog[i].ponto > 0)
+                jog[i].ponto += ocorrencias;
 
             printf("\nA palavra '%s' foi encontrada %d vez(es) na matriz.\n", palavra, ocorrencias);
         }
