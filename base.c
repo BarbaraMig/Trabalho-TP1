@@ -15,7 +15,7 @@ int cont2 = 0;
 int encontrarPalavra(char matriz[10][10], char palavra[10]) {
     int tamanho = strlen(palavra);
     int linha, coluna, i, j, k;
-    int ocorrencias = 0;
+    int ocorrencias = -1;
 
     // Verificar horizontalmente
     for (linha = 0; linha < 10; linha++) {
@@ -29,7 +29,7 @@ int encontrarPalavra(char matriz[10][10], char palavra[10]) {
             }
             if (match) {
                 printf("Palavra '%s' encontrada na horizontal! Início: linha %d, coluna %d\n", palavra, linha, coluna);
-                ocorrencias++;
+                ocorrencias =1;
             }
         }
     }
@@ -46,7 +46,7 @@ int encontrarPalavra(char matriz[10][10], char palavra[10]) {
             }
             if (match) {
                 printf("Palavra '%s' encontrada na vertical! Início: linha %d, coluna %d\n", palavra, linha, coluna);
-                ocorrencias++;
+                ocorrencias = 1;
             }
         }
     }
@@ -63,7 +63,7 @@ int encontrarPalavra(char matriz[10][10], char palavra[10]) {
             }
             if (match) {
                 printf("Palavra '%s' encontrada na descendo a diagonal! Início: linha %d, coluna %d\n", palavra, linha, coluna);
-                ocorrencias++;
+                ocorrencias = 1;
             }
         }
     }
@@ -80,14 +80,12 @@ int encontrarPalavra(char matriz[10][10], char palavra[10]) {
             }
             if (match) {
                 printf("Palavra '%s' encontrada na subindo a diagonal! Início: linha %d, coluna %d\n", palavra, linha, coluna);
-                ocorrencias++;
+                ocorrencias = 1;
             }
         }
     }
 
-    if (ocorrencias > 0)
-        return 1;
-    return -1;
+    return ocorrencias;
 }
 
 void preencherMatriz(char matriz[10][10]) {
@@ -172,10 +170,12 @@ int main() {
             }
 
             int ocorrencias = encontrarPalavra(matriz, palavra);
-            if (ocorrencias > 0)
-                jog[i].ponto += ocorrencias;
-            else 
+            jog[i].ponto += ocorrencias;
+            
+            if (ocorrencias < 0)
                 ocorrencias = 0;
+            if(jog[i].ponto < 0)
+                jog[i].ponto = 0;
 
             printf("\nA palavra '%s' foi encontrada %d vez(es) na matriz.\n", palavra, ocorrencias);
         }
